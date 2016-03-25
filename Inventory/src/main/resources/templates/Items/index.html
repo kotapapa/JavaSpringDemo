@@ -1,0 +1,82 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="_temp :: header ('index')">
+</head>
+<body>
+
+  <div class="container">
+    <div class="page-header">
+      <h1 th:inline="text">
+        [[#{items.title}]]
+        <small th:text="#{items.index.subtitle}">subtitle</small>
+      </h1>
+    </div>
+
+    <div th:replace="_temp :: nav"></div>
+
+    <div class="row">
+      <div class="col-md-12">
+
+        <nav>
+          <ul class="pagination">
+            <li>
+              <a href="/items/1" th:href="@{/items/} + (${currentPage} == 1 ? 1 : ${currentPage} - 1)" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+              </a>
+            </li>
+            <li th:class="${i} == ${currentPage} ? 'active' : ''" th:each="i : ${#numbers.sequence(1, maxPage)}">
+              <a href="/items/1" th:href="@{/items/} + ${i}" th:text="${i}">1</a>
+            </li>
+            <li>
+              <a href="/items/999" th:href="@{/items/} + (${currentPage} == ${maxPage} ? ${maxPage} : ${currentPage} + 1)"  aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+
+        <table class="table table-striped" th:if="${result}">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>item Code</th>
+              <th>item Name</th>
+              <th>item Scale</th>
+              <th>item Maker</th>
+              <th>item Description</th>
+              <th>item Price</th>
+              <th>detail</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr th:each="item, status : ${result}" th:object="${item}">
+              <td th:text="${status.count}">idx</td>
+              <td th:text="*{itemCode}">itemCode</td>
+              <td th:text="*{itemName}">itemName</td>
+              <td th:text="*{itemScale}">itemScale</td>
+              <td th:text="*{itemVendor}">itemMaker</td>
+              <td th:text="*{itemDescription}">itemDescription</td>
+              <td th:text="*{itemPrice}">itemPrice</td>
+              <td th:text="*{MSRP}">MSRP</td>
+              <td>
+                <a class="btn btn-default" href="/items/detail/0" th:href="@{/items/detail/} + *{id}">detail</a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        total <span class="badge" th:text="${totalCount}">totalCount</span> currentPage <span class="badge" th:text="${currentPage}">currentPage</span> maxPage <span class="badge" th:text="${maxPage}">maxPage</span>
+      </div>
+    </div>
+
+    <div th:replace="_temp :: footer"></div>
+  </div>
+
+  <div th:include="_temp :: script"></div>
+</body>
+</html>
