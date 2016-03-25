@@ -1,6 +1,5 @@
 package com.inventory;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -11,8 +10,8 @@ import com.inventory.viewhelper.MyDialect;
 @SpringBootApplication
 public class InventoryApplication implements CommandLineRunner {
 
-@Autowired
-private MyMongoRepository mongoRepository;
+//@Autowired
+//private MyMongoRepository mongoRepository;
 
 public static void main(String[] args) {
 	SpringApplication.run(InventoryApplication.class, args);
