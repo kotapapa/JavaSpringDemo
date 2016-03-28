@@ -14,10 +14,10 @@
     <div th:fragment="nav" class="row">
       <div class="col-md-12">
         <ul class="nav nav-pills">
-          <li role="presentation"><a href="/items" th:href="@{/items}">items</a></li>
-          <li role="presentation"><a href="/inventorylogs" th:href="@{/orders}">inventorylogs</a></li>
-          <li role="presentation"><a href="/admin/stats" th:href="@{/admin/stats}">admin:stats</a></li>
-          <li role="presentation"><a href="/admin/init" th:href="@{/admin/init}">admin:init</a></li>
+          <li role="presentation"><a href="/items" th:href="@{/items}" th:text="#{items.title}">items.title</a></li>
+          <li role="presentation"><a href="/inventorylogs" th:href="@{/inventorylogs}" th:text="#{inventorylogs.title}">inventorylogs.title</a></li>
+          <li role="presentation"><a href="/admin/stats" th:href="@{/admin/stats}" th:text="#{admin.stats}">admin.stats</a></li>
+          <li role="presentation"><a href="/admin/init" th:href="@{/admin/init}" th:text="#{admin.init}">admin.init</a></li>
         </ul>
       </div>
     </div>

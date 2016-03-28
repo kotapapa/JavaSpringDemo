@@ -39,13 +39,13 @@
           <thead>
             <tr>
               <th>#</th>
-              <th>item Code</th>
-              <th>item Name</th>
-              <th>item Scale</th>
-              <th>item Maker</th>
-              <th>item Description</th>
-              <th>item Price</th>
-              <th>detail</th>
+              <th th:text="#{items.code}">items.code</th>
+              <th th:text="#{items.name}">items.name</th>
+              <th th:text="#{items.scale}">items.scale</th>
+              <th th:text="#{items.maker}">items.maker</th>
+              <th th:text="#{items.price}">items.price</th>
+              <th th:text="#{items.description}">items.description</th>
+              <th th:text="#{items.detail.subtitle}">items.detail.subtitle</th>
             </tr>
           </thead>
           <tbody>
@@ -54,10 +54,9 @@
               <td th:text="*{itemCode}">itemCode</td>
               <td th:text="*{itemName}">itemName</td>
               <td th:text="*{itemScale}">itemScale</td>
-              <td th:text="*{itemVendor}">itemMaker</td>
-              <td th:text="*{itemDescription}">itemDescription</td>
+              <td th:text="*{itemMaker}">itemMaker</td>
               <td th:text="*{itemPrice}">itemPrice</td>
-              <td th:text="*{MSRP}">MSRP</td>
+              <td th:text="*{itemDescription}">itemDescription</td>
               <td>
                 <a class="btn btn-default" href="/items/detail/0" th:href="@{/items/detail/} + *{id}">detail</a>
               </td>

@@ -8,7 +8,6 @@ import org.apache.commons.collections.CollectionUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Service;
 
 import com.inventory.domain.Inventorylogs;
@@ -24,18 +23,14 @@ public class InitDataService {
 
   private static final String RESOURCE_DIR = "classpath:data/init";
 
-  private static final String CUSTOMERS = RESOURCE_DIR + "/Customers/Customers.json";
-  private static final String ORDERDETAILS = RESOURCE_DIR + "/OrderDetails/OrderDetails.json";
-  private static final String ORDERS = RESOURCE_DIR + "/Inventorylogs/Inventorylogs.json";
-  private static final String PAYMENTS = RESOURCE_DIR + "/Payments/Payments.json";
-  private static final String PRODUCTLINES = RESOURCE_DIR + "/ProductLines/ProductLines.json";
-  private static final String PRODUCTS = RESOURCE_DIR + "/Items/Items.json";
+  private static final String INVENTORYLOGS = RESOURCE_DIR + "/Inventorylogs/Inventorylogs.json";
+  private static final String ITEMS = RESOURCE_DIR + "/Items/Items.json";
 
   @Autowired
   private MongoService mongoService;
 
-  @Autowired
-  private MongoTemplate mongoTemplate;
+//  @Autowired
+//  private MongoTemplate mongoTemplate;
 
   @Autowired
   private InventorylogsRepository inventorylogsRepository;
@@ -49,7 +44,7 @@ public class InitDataService {
     mongoService.collectionAllDrop();
 
     List<Inventorylogs> inventorylogsList =
-      JsonLoader.multi(ORDERS, Inventorylogs.class);
+      JsonLoader.multi(INVENTORYLOGS, Inventorylogs.class);
     if (CollectionUtils.isNotEmpty(inventorylogsList)) {
       logger.info("inventorylogsList: " + inventorylogsList.size());
     } else {
@@ -57,7 +52,7 @@ public class InitDataService {
     }
 
     List<Items> itemsList =
-      JsonLoader.multi(PRODUCTS, Items.class);
+      JsonLoader.multi(ITEMS, Items.class);
     if (CollectionUtils.isNotEmpty(itemsList)) {
       logger.info("itemsList: " + itemsList.size());
     } else {
